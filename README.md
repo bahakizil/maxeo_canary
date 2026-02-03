@@ -4,37 +4,78 @@ End-to-end monitoring and canary testing for Maxeo AI platform.
 
 ## Overview
 
-This repository contains canary test scripts for monitoring the health and functionality of the Maxeo AI platform in production.
+This repository contains a comprehensive canary test system that monitors the full customer journey on the Maxeo AI platform, from landing page to workspace creation, category discovery, and snapshot analysis.
+
+## What it Does
+
+The canary test system:
+- 🌐 **Browser Automation:** Opens maxeo.ai, navigates through the entire user flow
+- 🔐 **Authentication:** Handles OTP-based login
+- 🏢 **Workspace Creation:** Creates test workspace with AI-powered brand analysis
+- 📊 **Database Verification:** Verifies all data is correctly stored in PostgreSQL
+- 📈 **Category & Snapshot:** Monitors AI agent execution (category discovery, snapshot analysis)
+- 💬 **Slack Alerts:** Sends detailed reports to Slack with metrics and screenshots
+- 🧹 **Auto Cleanup:** Cleans up test data after execution
 
 ## Structure
 
 ```
 maxeo_canary/
 ├── canary/
-│   └── canary_test.py      # Main canary test module
-├── run_canary.sh            # Canary test runner script
+│   ├── canary_test.py          # Main orchestrator (41KB)
+│   ├── alerting.py             # Slack/Sentry alerts (28KB)
+│   ├── browser_automation.py   # Playwright automation (50KB)
+│   ├── db_verification.py      # Database checks (26KB)
+│   ├── cleanup.py              # Test cleanup (8KB)
+│   ├── config.py               # Configuration (3.5KB)
+│   ├── utils.py                # Utilities (3KB)
+│   └── __init__.py             # Module init
+├── run_canary.sh               # Runner script
+├── requirements.txt            # Python dependencies
+├── .env.example                # Environment variables template
 └── README.md
 ```
 
-## Canary Test Module
+## Setup
 
-The `canary_test.py` module provides E2E testing capabilities for:
-- Workspace creation
-- AI agent operations
-- API endpoint health checks
-- Database operations
-- System integration tests
-
-## Usage
-
-### Run Canary Tests
+### 1. Install Dependencies
 
 ```bash
-# Run all canary tests
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install Python packages
+pip install -r requirements.txt
+
+# Install Playwright browser
+playwright install chromium
+```
+
+### 2. Configure Environment
+
+```bash
+# Copy example env file
+cp .env.example .env
+
+# Edit .env with your settings
+nano .env
+```
+
+Required environment variables:
+- **Database:** `POSTGRES_HOST`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, etc.
+- **Canary Settings:** `CANARY_BASE_URL`, `CANARY_SLACK_WEBHOOK`
+- **Auth:** `ADMIN_TOTP_SECRET`, `FERNET_ENCRYPTION_KEY`
+- **AI:** `OPENROUTER_API_KEY`
+
+### 3. Run Tests
+
+```bash
+# Run with runner script (recommended)
 ./run_canary.sh
 
-# Run specific test
-python canary/canary_test.py
+# Or run directly
+python -m canary.canary_test
 ```
 
 ## Deployment
