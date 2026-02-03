@@ -16,7 +16,7 @@ from typing import Optional, Dict, Any
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
-from app.modules.canary.utils import (
+from canary.utils import (
     get_canary_logger,
     decrypt_string,
     generate_totp_token

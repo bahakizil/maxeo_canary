@@ -14,16 +14,16 @@ import time
 from datetime import datetime, timezone
 from typing import Optional
 
-from app.modules.canary.config import get_canary_config, CanaryConfig
-from app.modules.canary.browser_automation import BrowserAutomation
-from app.modules.canary.db_verification import DBVerifier
-from app.modules.canary.alerting import (
+from canary.config import get_canary_config, CanaryConfig
+from canary.browser_automation import BrowserAutomation
+from canary.db_verification import DBVerifier
+from canary.alerting import (
     CanaryTestError,
     CanaryResult,
     CanaryMetrics,
     AlertManager
 )
-from app.modules.canary.utils import get_canary_logger, get_database_url
+from canary.utils import get_canary_logger, get_database_url
 
 logger = get_canary_logger("canary.test")
 

@@ -81,7 +81,7 @@ def get_database_url() -> str:
     """Get database connection URL from settings or environment."""
     # Try to load from app settings first
     try:
-        from app.shared.config import get_settings
+        # from app.shared.config import get_settings
         settings = get_settings()
         if settings.DATABASE_URL:
             return settings.DATABASE_URL

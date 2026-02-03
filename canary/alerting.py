@@ -11,8 +11,8 @@ from typing import Optional, Dict, Any, List
 import httpx
 import sentry_sdk
 
-from app.modules.canary.utils import get_canary_logger
-from app.modules.canary.config import get_canary_config
+from canary.utils import get_canary_logger
+from canary.config import get_canary_config
 
 logger = get_canary_logger("canary.alerting")
 

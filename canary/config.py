@@ -63,7 +63,7 @@ class CanaryConfig:
         """Load values from environment variables or main settings if available."""
         # Try to load from main settings first, then fall back to env vars
         try:
-            from app.shared.config import get_settings
+            # from app.shared.config import get_settings
             settings = get_settings()
 
             self.SLACK_WEBHOOK_URL = settings.CANARY_SLACK_WEBHOOK or self.SLACK_WEBHOOK_URL

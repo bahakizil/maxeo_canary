@@ -6,40 +6,40 @@ Landing page → Get Report → OTP → Workspace setup → Prompts → Snapshot
 
 Usage:
     # Async usage
-    from app.modules.canary import run_canary_test
+    from canary import run_canary_test
     result = await run_canary_test()
 
     # Sync usage (for cron/CLI)
-    from app.modules.canary import run_canary_test_sync
+    from canary import run_canary_test_sync
     result = run_canary_test_sync()
 
     # CLI execution
     python -m app.modules.canary.canary_test
 """
 
-from app.modules.canary.canary_test import (
+from canary.canary_test import (
     CanaryTest,
     run_canary_test,
     run_canary_test_sync,
 )
-from app.modules.canary.alerting import (
+from canary.alerting import (
     CanaryResult,
     CanaryMetrics,
     CanaryTestError,
     AlertManager,
 )
-from app.modules.canary.config import (
+from canary.config import (
     CanaryConfig,
     get_canary_config,
 )
-from app.modules.canary.db_verification import (
+from canary.db_verification import (
     DBVerifier,
     VerificationResult,
 )
-from app.modules.canary.browser_automation import BrowserAutomation
+from canary.browser_automation import BrowserAutomation
 
 # Note: CanaryCleanup is not imported by default as it depends on SQLModel ORM
-# Import it directly if needed: from app.modules.canary.cleanup import CanaryCleanup
+# Import it directly if needed: from canary.cleanup import CanaryCleanup
 
 __all__ = [
     # Main test functions

@@ -10,8 +10,8 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional, List, TYPE_CHECKING
 from sqlmodel import Session, select, not_
 
-from app.modules.canary.config import get_canary_config
-from app.modules.canary.utils import get_canary_logger
+from canary.config import get_canary_config
+from canary.utils import get_canary_logger
 
 if TYPE_CHECKING:
     from app.core.models.user import User

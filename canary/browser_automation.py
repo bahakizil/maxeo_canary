@@ -8,9 +8,9 @@ import asyncio
 from typing import Optional
 from playwright.async_api import async_playwright, Browser, Page, BrowserContext
 
-from app.modules.canary.config import get_canary_config
-from app.modules.canary.alerting import CanaryTestError
-from app.modules.canary.utils import get_canary_logger
+from canary.config import get_canary_config
+from canary.alerting import CanaryTestError
+from canary.utils import get_canary_logger
 
 logger = get_canary_logger("canary.browser_automation")
 
